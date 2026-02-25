@@ -13,6 +13,8 @@ public class GunController : MonoBehaviour
     public AudioSource BulletSound;
     public AudioClip ReloadSound;
     public Text balaText;
+
+
      
 
 
@@ -40,6 +42,9 @@ public class GunController : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance != null && GameManager.Instance.IsPaused)
+            return;
+
         Aim();
         CooldownTick();
         Atirar();

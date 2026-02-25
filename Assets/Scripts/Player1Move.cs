@@ -65,6 +65,11 @@ public class Player1Move : MonoBehaviour
         }
 
         mostrarVida();
+
+        if (movimento != Vector2.zero && !estaDashando)
+        {
+            CameraShake.Instance.Shake(0.05f, 0.05f);
+        }
     }
     void mostrarVida()
     {
@@ -97,6 +102,8 @@ public class Player1Move : MonoBehaviour
         dashCooldownTimer = dashCooldown;
 
         dashTrail.emitting = true;
+
+        CameraShake.Instance.Shake(0.15f, 0.2f);
 
         //  Imortal apenas contra Enemy
         Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
@@ -155,7 +162,7 @@ public class Player1Move : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") || collision.CompareTag("TankEnemy") || collision.CompareTag("GreaterEnemy"))
         {
             AudioSource.PlayClipAtPoint(Damage, transform.position);
             perderVida();

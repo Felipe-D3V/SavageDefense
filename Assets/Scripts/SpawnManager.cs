@@ -38,12 +38,14 @@ public class SpawnManager : MonoBehaviour
     {
         int roll = Random.Range(0, 10); // 0 a 9
 
-        if (roll < 7)
+        if (roll < 5)
             return enemyPrefab[0]; // comum (70%)
-        else if (roll < 9)
+        else if (roll < 7)
             return enemyPrefab[1]; // rápido (20%)
+        else if (roll < 9)
+            return enemyPrefab[2]; // robusto (20%)
         else
-            return enemyPrefab[2]; // robusto (10%)
+            return enemyPrefab[3]; // Pesado (10%)
     }
 
     void textos()

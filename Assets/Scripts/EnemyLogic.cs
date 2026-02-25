@@ -11,6 +11,7 @@ public class EnemyLogic : MonoBehaviour
     Transform player;
 
     bool isTank => CompareTag("TankEnemy");
+    bool isGreater => CompareTag("GreaterEnemy");
 
     void Start()
     {
@@ -19,7 +20,9 @@ public class EnemyLogic : MonoBehaviour
 
         if (isTank)
             life = 3;
-    }
+        if (isGreater)
+            life = 5;
+    } 
 
     void FixedUpdate()
     {

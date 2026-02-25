@@ -147,6 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d308dcf5635ab224685ddfb89776543b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 5
+  bulletSpeed: 6
   effectPrefab: {fileID: 3768168593677360707, guid: 833384bd0858e604b9fc53e94b146371, type: 3}
   hitClip: {fileID: 8300000, guid: 8f4ffdef713dd754a865b62559f542c2, type: 3}

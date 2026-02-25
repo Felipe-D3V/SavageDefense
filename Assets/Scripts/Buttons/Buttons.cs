@@ -6,23 +6,37 @@ using UnityEngine.UI;
 
 public class Buttons : MonoBehaviour
 {
-    static bool Multiplayer = false;
     public GameObject ConfigMenu;
- public void IniciarJogo()
+
+
+    private void Update()
     {
-        SceneManager.LoadScene("CharacterChoose");
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (ConfigMenu.activeSelf)
+            {
+                ConfigMenu.SetActive(false);
+            }
+        }
     }
 
-    public void IniciarMultiplayer()
+    public void IniciarJogo()
+    {
+        SceneManager.LoadScene("Arena");
+    }
+
+    public void IniciarCoop()
     {
         SceneManager.LoadScene("CharacterChoose");
-        Multiplayer = true;
+       
     }
 
     public void Settings()
     {
         ConfigMenu.SetActive(true);
     }
+
+
 
     public void FecharMenu()
     {
