@@ -40,7 +40,7 @@ public class EnemyLogic : MonoBehaviour
             Morrer();
     }
 
-    void Morrer()
+    public void Morrer()
     {
         GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject, 0.1f);
@@ -48,5 +48,14 @@ public class EnemyLogic : MonoBehaviour
         SpawnManager sm = FindObjectOfType<SpawnManager>();
         if (sm != null)
             sm.InimigoMorreu();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.GetComponent<Player1Move>()?.perderVida();
+        
+        }
     }
 }

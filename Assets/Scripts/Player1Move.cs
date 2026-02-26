@@ -27,7 +27,7 @@ public class Player1Move : MonoBehaviour
 
     public AudioClip Damage;
     public AudioClip DashSound;
-
+    public GameObject attackHitbox;
 
 
     Vector2 movimento;
@@ -46,6 +46,11 @@ public class Player1Move : MonoBehaviour
         enemyLayer = LayerMask.NameToLayer("Enemy");
 
         dashTrail.emitting = false;
+
+        Collider2D playerCollider = GetComponent<Collider2D>();
+        Collider2D attackCollider = attackHitbox.GetComponent<Collider2D>();
+
+        Physics2D.IgnoreCollision(playerCollider, attackCollider);
     }
 
     void Update()
@@ -158,14 +163,4 @@ public class Player1Move : MonoBehaviour
     }
 
 
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy") || collision.CompareTag("TankEnemy") || collision.CompareTag("GreaterEnemy"))
-        {
-            AudioSource.PlayClipAtPoint(Damage, transform.position);
-            perderVida();
-        }
-    }
 }
