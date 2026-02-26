@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Player1Move : MonoBehaviour
 {
+    public Vector2 UltimaDirecao { get; private set; } = Vector2.down;
+
     [Header("Movimento")]
     public float velocidade = 5f;
     public Rigidbody2D rb;
@@ -61,7 +63,10 @@ public class Player1Move : MonoBehaviour
         );
 
         if (movimento != Vector2.zero)
+        {
             direcaoDash = movimento.normalized;
+            UltimaDirecao = movimento.normalized;
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && !estaDashando && dashCooldownTimer <= 0)
         {
@@ -73,7 +78,7 @@ public class Player1Move : MonoBehaviour
 
         if (movimento != Vector2.zero && !estaDashando)
         {
-            CameraShake.Instance.Shake(0.05f, 0.05f);
+            CameraShake.Instance.Shake(0.01f, 0.01f);
         }
     }
     void mostrarVida()

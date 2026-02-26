@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -11,6 +10,16 @@ public class PlayerAttack : MonoBehaviour
     private bool canAttack = true;
 
     Collider2D col;
+    Player1Move playerMove;
+    public Animator animator;
+
+    void Start()
+    {
+        col = attackHitbox.GetComponent<Collider2D>();
+        col.enabled = false;
+
+        playerMove = GetComponent<Player1Move>();
+    }
 
     void Update()
     {
@@ -19,15 +28,12 @@ public class PlayerAttack : MonoBehaviour
             StartCoroutine(Attack());
         }
     }
-    void Start()
-    {
-        col = attackHitbox.GetComponent<Collider2D>();
-        col.enabled = false;
-    }
 
     IEnumerator Attack()
     {
         canAttack = false;
+
+        animator.SetBool("atacando", true);
 
         col.enabled = true;
 
@@ -35,8 +41,11 @@ public class PlayerAttack : MonoBehaviour
 
         col.enabled = false;
 
+        animator.SetBool("atacando", false);
+
         yield return new WaitForSeconds(attackCooldown);
 
         canAttack = true;
     }
+
 }
